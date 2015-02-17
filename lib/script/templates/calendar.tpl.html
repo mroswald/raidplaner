@@ -1,18 +1,42 @@
+<style type="text/css">
+  /* fix for class row in bootstrap */
+  #calendar tr.row:before {
+    content: none;
+  }
+</style>
 <div id="calendarPositioner" ng-if="calendarInitialized">
   <table id="calendar" cellspacing="0" border="0" ng-class="{bigicons: CalendarBigIcons}">
-    <tr class="weekday">
-      <td ng-repeat="weekday in WeekDayArray">{{weekday}}</td>
-    </tr>
+    <tbody>
 
-    <tr class="row" ng-repeat="week in weeks">
-      <td ng-repeat="day in week">
-          <!--ng-class="{FieldClass: true, calendarDay:true, VacationClass:((TimeIter.getTime() >= VacationStart) && (TimeIter.getTime() <= VacationEnd))}" id="{{TimeIter.getTime()}}">-->
+      <tr class="weekday">
+        <td ng-repeat="weekday in WeekDayArray">{{weekday}}</td>
+      </tr>
 
+      <tr class="row" ng-repeat="week in weeks">
+        <td ng-repeat="day in week" ng-class="{day: true, today: day.isToday, dayFirst: $index == 0, vacation_today: day.onVacation}">
+          <div class="day_overflow">
+            <!--<div class="DayClass ShadowClass">{{day.label}}</div>-->
+            <div ng-class="{dayOfMonth: day.dayOfMonth, shadow_gray: day.dayOfMonth, dayOfOther: day.dayOfOtherMonth, shadow_white: day.dayOfOtherMonth}">{{day.label}}</div>
 
-        <div ng-class="{dayOfMonth: (TimeIter.getMonth() == ActiveMonth), dayOfOther: (TimeIter.getMonth() != ActiveMonth), ShadowClass: true}">{{day}}</div>
+            <raid ng-repeat="raid in day.raids"></raid>
 
-      </td>
-    </tr>
+          </div>
+        </td>
+      </tr>
 
+    </tbody>
   </table>
+</div>
+
+<div id="calendarFunctions">
+  <button class="btn btn-default" ng-click="loadCalendar(ActiveMonth, ActiveYear, -1)">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </button>
+  <button class="btn btn-default" ng-click="loadCalendar(ActiveMonth, ActiveYear, 1)">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </button>
+  <button ng-if="gUser.isRaidlead" class="btn btn-default" ng-click="loadNewRaidSheet()">
+    <span class="glyphicon glyphicon-plus"></span>
+  </button>
+  <span id="month">{{MonthArray[ActiveMonth] + " " + ActiveYear}}</span>
 </div>

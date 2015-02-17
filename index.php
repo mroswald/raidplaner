@@ -58,13 +58,32 @@
                   <div class="icon"></div><div class="text" ng-bind="gLocale.Register"></div><div class="indicator"></div>
                 </span>
 
-                <div ng-if="!gUser.validUser && gUser.registeredUser" id="logout" ng-style="gSite.Logout ? 'display:none' : ''"><button class="button_logout" ng-bind="gLocale.Logout"></button></div>
+                <!-- Blocked user @todo -->
+                <div ng-if="!gUser.validUser && gUser.registeredUser" id="logout" ng-style="gSite.Logout ? 'display:none' : ''">
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-log-out"></span>
+                        {{gLocale.Logout}}
+                    </button>
+                </div>
 
                 <span ng-if="gUser" id="button_calendar" class="menu_button"><div class="icon"></div><div class="text" ng-bind="gLocale.Calendar"></div><div class="indicator"></div></span>
                 <span ng-if="gUser" id="button_raid" class="menu_button"><div class="icon"></div><div class="text" ng-bind="gLocale.Raid"></div><div class="indicator"></div></span>
                 <span ng-if="gUser" id="button_profile" class="menu_button"><div class="icon"></div><div class="text" ng-bind="gLocale.Profile"></div><div class="indicator"></div></span>
 
-                <span ng-if="gUser && gUser.isAdmin" id="button_settings_users" class="menu_button"><div class="icon"></div><div class="text" ng-bind="gLocale.Settings"></div><div class="indicator"></div></span>";
+                <span ng-if="gUser && gUser.isAdmin" id="button_settings_users" class="menu_button"><div class="icon"></div><div class="text" ng-bind="gLocale.Settings"></div><div class="indicator"></div></span>
+
+                <div ng-if="gUser && gSite.Logout" id="logout">
+                    <button class="button_logout">
+                        <span class="glyphicon glyphicon-log-out"></span>
+                        {{gLocale.Logout}}
+                    </button>
+                </div>
+
+                <span ng-if="gSite.HelpLink" id="help">
+                    <button class="button_help" ng-click="openLink(gSite.HelpLink)">
+                        <span class="glyphicon glyphicon-question-sign"></span>
+                    </button>
+                </span>
             </div>
             <div id="body" ng-view></div>
 
@@ -91,7 +110,6 @@
 
         <script type="application/javascript" src="lib/script/angular/angular.min.js"></script>
         <script type="application/javascript" src="lib/script/angular-route/angular-route.min.js"></script>
-        <script type="application/javascript" src="lib/script/angular-translate/dist/angular-translate.min.js"></script>
         <script type="application/javascript" src="lib/script/ui-bootstrap-tpls-0.12.0.min.js"></script>
         <script type="application/javascript" src="lib/script/app.js"></script>
         <?php // Load scripts
