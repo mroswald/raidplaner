@@ -1,0 +1,18 @@
+<div id="calendarPositioner" ng-if="calendarInitialized">
+  <table id="calendar" cellspacing="0" border="0" ng-class="{bigicons: CalendarBigIcons}">
+    <tr class="weekday">
+      <td ng-repeat="weekday in WeekDayArray">{{weekday}}</td>
+    </tr>
+
+    <tr class="row" ng-repeat="week in weeks">
+      <td ng-repeat="day in week">
+          <!--ng-class="{FieldClass: true, calendarDay:true, VacationClass:((TimeIter.getTime() >= VacationStart) && (TimeIter.getTime() <= VacationEnd))}" id="{{TimeIter.getTime()}}">-->
+
+
+        <div ng-class="{dayOfMonth: (TimeIter.getMonth() == ActiveMonth), dayOfOther: (TimeIter.getMonth() != ActiveMonth), ShadowClass: true}">{{day}}</div>
+
+      </td>
+    </tr>
+
+  </table>
+</div>

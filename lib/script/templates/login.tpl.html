@@ -1,0 +1,12 @@
+<form id="loginform" class="input-group" ng-submit="startLogin()">
+  <input type="hidden" value="false" name="sticky" id="sticky_value">
+
+  <input type="text" placeholder="{{gLocale.Username}}" class="input" ng-model="loginname">
+
+  <input type="password" placeholder="{{gLocale.Password}}" class="input" ng-model="loginpass">
+
+  <div class="btn-group">
+    <button class="btn btn-default btn-xs" ng-click="startLogin()">Anmelden</button>
+    <button class="btn btn-default btn-xs" id="sticky"><i class="glyphicon glyphicon-lock"></i></button>
+  </div>
+</form>

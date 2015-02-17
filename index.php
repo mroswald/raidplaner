@@ -1,7 +1,7 @@
 <?php
     define("LOCALE_MAIN", true);
     define("STYLE_DEBUG", false);
-    define("SCRIPT_DEBUG", false);
+    define("SCRIPT_DEBUG", true);
     
     require_once("lib/private/locale.php");
     require_once("lib/private/tools_site.php");
@@ -33,8 +33,8 @@
     loadSiteSettings();
     echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html>
+<!doctype html>
+<html ng-app="raidplanerApp">
     <head>
         <title>Raidplaner</title>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
@@ -43,25 +43,30 @@
 
         <link rel="icon" href="favicon.png" type="image/png"/>
         <link rel="stylesheet" type="text/css" href="lib/layout/allstyles.php?v=<?php echo $gSite["Version"].((STYLE_DEBUG) ? "&debug" : ""); ?>"/>
-
-        <?php // Load scripts
-
-            if (defined("SCRIPT_DEBUG") && SCRIPT_DEBUG)
-            {
-                include_once("lib/script/allscripts.php");
-            }
-            else
-            {
-                echo "<script type=\"text/javascript\" src=\"lib/script/raidplaner.js?v=".$gSite["Version"]."\"></script>";
-            }
-        ?>
+        <link rel="stylesheet" type="text/css" href="lib/layout/bootstrap.min.css" />
     </head>
 
     <body>
         <div id="appwindow"<?php if ($gSite["PortalMode"]) echo " class=\"portalmode\""; ?>>
-            <div id="banner"></div>
-            <div id="menu"></div>
-            <div id="body"></div>
+            <div id="banner" ></div>
+            <div id="menu" ng-controller="MenuController">
+                <span ng-if="!gUser" id="button_login" class="menu_button">
+                  <div class="icon"></div><div class="text" ng-bind="gLocale.Login"></div><div class="indicator"></div>
+                </span>
+
+                <span ng-if="!gUser && gSite.AllowRegistration" id="button_register" class="menu_button">
+                  <div class="icon"></div><div class="text" ng-bind="gLocale.Register"></div><div class="indicator"></div>
+                </span>
+
+                <div ng-if="!gUser.validUser && gUser.registeredUser" id="logout" ng-style="gSite.Logout ? 'display:none' : ''"><button class="button_logout" ng-bind="gLocale.Logout"></button></div>
+
+                <span ng-if="gUser" id="button_calendar" class="menu_button"><div class="icon"></div><div class="text" ng-bind="gLocale.Calendar"></div><div class="indicator"></div></span>
+                <span ng-if="gUser" id="button_raid" class="menu_button"><div class="icon"></div><div class="text" ng-bind="gLocale.Raid"></div><div class="indicator"></div></span>
+                <span ng-if="gUser" id="button_profile" class="menu_button"><div class="icon"></div><div class="text" ng-bind="gLocale.Profile"></div><div class="indicator"></div></span>
+
+                <span ng-if="gUser && gUser.isAdmin" id="button_settings_users" class="menu_button"><div class="icon"></div><div class="text" ng-bind="gLocale.Settings"></div><div class="indicator"></div></span>";
+            </div>
+            <div id="body" ng-view></div>
 
             <span id="version"><?php echo "version ".intVal($gSite["Version"] / 100).".".intVal(($gSite["Version"] % 100) / 10).".".intVal($gSite["Version"] % 10).(($gSite["Version"] - intval($gSite["Version"]) > 0) ? chr(round(($gSite["Version"] - intval($gSite["Version"])) * 10) + ord("a")-1) : ""); ?></span>
         </div>
@@ -83,5 +88,21 @@
             <div id="closesheet" class="clickable"></div>
             <div id="sheet_body"></div>
         </div>
+
+        <script type="application/javascript" src="lib/script/angular/angular.min.js"></script>
+        <script type="application/javascript" src="lib/script/angular-route/angular-route.min.js"></script>
+        <script type="application/javascript" src="lib/script/angular-translate/dist/angular-translate.min.js"></script>
+        <script type="application/javascript" src="lib/script/ui-bootstrap-tpls-0.12.0.min.js"></script>
+        <script type="application/javascript" src="lib/script/app.js"></script>
+        <?php // Load scripts
+            if (defined("SCRIPT_DEBUG") && SCRIPT_DEBUG)
+            {
+                include_once("lib/script/allscripts.php");
+            }
+            else
+            {
+                echo "<script type=\"text/javascript\" src=\"lib/script/raidplaner.js?v=".$gSite["Version"]."\"></script>";
+            }
+        ?>
     </body>
 </html>
