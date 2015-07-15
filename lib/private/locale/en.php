@@ -131,6 +131,8 @@
         $gLocale[ 'ExportClipboard' ]          = 'Clipboard';
         $gLocale[ 'CopyOk' ]                   = 'Text has been copied to clipboard.';
         $gLocale[ 'Random' ]                   = 'Unknown';
+        $gLocale[ 'SendComment' ]              = null;
+        $gLocale[ 'Comments' ]                 = null;
        
         // Profile
         $gLocale[ 'Profile' ]                  = 'Profile';

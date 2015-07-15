@@ -135,6 +135,8 @@
         $gLocale[ 'ExportClipboard' ]          = 'Presse-Papiers';
         $gLocale[ 'CopyOk' ]                   = 'Texte a été copié dans le presse-papiers';
         $gLocale[ 'Random' ]                   = 'Inconnu';
+        $gLocale[ 'SendComment' ]              = null;
+        $gLocale[ 'Comments' ]                 = null;
         
         // Profile
         $gLocale[ 'Profile' ]                  = 'Profil';

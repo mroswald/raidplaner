@@ -131,7 +131,9 @@
         $gLocale[ 'ExportClipboard' ]          = 'Zwischenablage';
         $gLocale[ 'CopyOk' ]                   = 'Text wurde in die Zwischenablage exportiert.';
         $gLocale[ 'Random' ]                   = 'Unbekannt';
-        
+        $gLocale[ 'SendComment' ]              = 'Kommentar speichern';
+        $gLocale[ 'Comments' ]                 = 'Kommentare';
+
         // Profile
         $gLocale[ 'Profile' ]                  = 'Profil';
         $gLocale[ 'History' ]                  = 'Vergangene Raids';

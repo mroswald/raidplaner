@@ -278,6 +278,22 @@
 
                 $Out->pushValue('attendee', $Attendees);
                 $Out->pushValue('attended', $NumAttended);
+
+                $CommentQuery = $Connector->prepare('SELECT '.RP_TABLE_PREFIX.'RaidComment.Comment, ' .
+                    RP_TABLE_PREFIX.'RaidComment.InsertDate, '.RP_TABLE_PREFIX.'User.Login AS UserName '.
+                    'FROM `'.RP_TABLE_PREFIX.'RaidComment` LEFT JOIN `'.RP_TABLE_PREFIX.'User` USING(UserId) '.
+                    'WHERE RaidId = :RaidId '.
+                    'ORDER BY InsertDate DESC' );
+
+                $CommentQuery->bindValue( ':RaidId', intval($aRequest['id']), PDO::PARAM_INT );
+
+                $Comments = array();
+                $CommentQuery->loop(function($Comment) use (&$Comments)
+                {
+                    array_push($Comments, $Comment);
+                });
+
+                $Out->pushValue('comments', $Comments);
                 
                 $ExportParameter = Api::normalizeArgsRaid(Array(
                     'raid'    => intval($aRequest['id']),

@@ -135,6 +135,8 @@
         $gLocale[ 'ExportClipboard' ]          = 'Schowek';
         $gLocale[ 'CopyOk' ]                   = 'Dane zostały skopiowane do schowka.';
         $gLocale[ 'Random' ]                   = 'Rezerwacja';
+        $gLocale[ 'SendComment' ]              = null;
+        $gLocale[ 'Comments' ]                 = null;
         
         // Profile
         $gLocale[ 'Profile' ]                  = 'Profil';

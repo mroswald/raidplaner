@@ -539,3 +539,38 @@
     font-size: 11px;
     font-family: Helvetica, Verdana, Arial, sans-serif; 
 }
+
+#raidcomments {
+    clear: left;
+}
+
+#raidcomments ul {
+    margin: 15px 0;
+    width: 50%;
+}
+
+#raidcomments ul li {
+    margin: 0 0 20px;
+    border-top: 1px solid #aaa;
+    padding: 5px;
+}
+
+#raidcomments ul li br {
+    line-height: 150%;
+}
+
+#raidcomments textarea {
+    width: 50%;
+    height: 90px;
+    margin-right: 30px;
+}
+
+#raidcomments #saveCommentButton {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 65px;
+}
+
+#banner {
+    opacity: 0;
+}

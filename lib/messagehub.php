@@ -20,6 +20,7 @@
     include_once("private/message_query_calendar.php");
     include_once("private/message_raid_list.php");
     include_once("private/message_raid_attend.php");
+    include_once("private/message_raid_comment.php");
     include_once("private/message_raid_create.php");
     include_once("private/message_raid_update.php");
     include_once("private/message_raid_delete.php");
@@ -113,6 +114,10 @@
 
         case "raid_detail":
             msgRaidDetail( $_REQUEST );
+            break;
+
+        case "raid_comment":
+            msgRaidComment( $_REQUEST );
             break;
 
         case "raid_update":

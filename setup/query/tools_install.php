@@ -66,6 +66,17 @@
             new Key(   "",             "LocationId"),
             new Key(   "",             "Start")
         ),
+
+        "RaidComment" => Array(
+            new Column("CommentId",    "int",          10,      Array("unsigned", "NOT NULL", "AUTO_INCREMENT")),
+            new Column("RaidId",       "int",          10,      Array("unsigned", "NOT NULL")),
+            new Column("UserId",       "int",          10,      Array("unsigned", "NOT NULL")),
+            new Column("Comment",      "text",         null,    Array("NOT NULL")),
+            new Column("InsertDate",   "timestamp",    null,    Array("DEFAULT CURRENT_TIMESTAMP")),
+            new Key(   "primary",      "CommentId"),
+            new Key(   "",             "RaidId"),
+            new Key(   "",             "UserId"),
+        ),
         
         "Session" => Array(
             new Column("SessionId",    "int",       10,     Array("unsigned", "NOT NULL", "AUTO_INCREMENT")),

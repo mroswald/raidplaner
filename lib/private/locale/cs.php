@@ -133,6 +133,8 @@
         $gLocale[ 'ExportClipboard' ]          = 'Schránka';
         $gLocale[ 'CopyOk' ]                   = 'Text byl zkopírován do schránky';
         $gLocale[ 'Random' ]                   = 'Náhodný';
+        $gLocale[ 'SendComment' ]              = null;
+        $gLocale[ 'Comments' ]                 = null;
         
         // Profile        
         $gLocale[ 'Profile' ]                  = 'Profil';
