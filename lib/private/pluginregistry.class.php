@@ -73,13 +73,20 @@
     // load files from the bindings folder
     if ($FolderHandle = opendir(dirname(__FILE__).'/bindings'))
     {
+        $aRequires = [];
         while (($PluginFile = readdir($FolderHandle)) !== false)
         {
             $FileParts = explode('.',$PluginFile);
 
             if (strtolower($FileParts[count($FileParts)-1]) == 'php')
-                require_once dirname(__FILE__).'/bindings/'.$PluginFile;
+                array_push($aRequires, $PluginFile);
 
+        }
+
+        asort($aRequires);
+
+        foreach($aRequires as $PluginFile) {
+            require_once dirname(__FILE__).'/bindings/'.$PluginFile;
         }
     }
     
